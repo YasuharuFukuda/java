@@ -18,8 +18,8 @@ public class PointTest {
 
 		p1.set(p2);
 
-		assertEquals(p1.x, p2.x);
-		assertEquals(p1.y, p2.y);
+		assertEquals(p1.x, p2.x, 0.0);
+		assertEquals(p1.y, p2.y, 0.0);
 
 	}
 

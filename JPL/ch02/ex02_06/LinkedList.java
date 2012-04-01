@@ -21,9 +21,10 @@ public class LinkedList {
 
 		LinkedList list = new LinkedList();
 		list.field = car;
-		LinkedList nextList = list.nextElement;
-		
+		LinkedList nextList = new LinkedList();
 		nextList.field = bike;
-		
+
+		list.nextElement = nextList;
+
 	}
 }

@@ -8,8 +8,8 @@ public class Vehicle {
 
 	private static int nextID;
 
-	private static final int TURN_LEFT = 90;
-	private static final int TURN_RIGHT = -90;
+	public static final int TURN_LEFT = 90;
+	public static final int TURN_RIGHT = -90;
 
 	public Vehicle(){
 		this.id = Vehicle.nextID++;

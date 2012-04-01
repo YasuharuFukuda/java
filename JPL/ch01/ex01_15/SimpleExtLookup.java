@@ -4,6 +4,11 @@ public class SimpleExtLookup implements ExtLookup {
 	private String[] names;
 	private Object[] values;
 
+	public SimpleExtLookup() {
+		names = new String[10];
+		values = new Object[10];
+	}
+
 	public Object find(String name) {
 		for (int i = 0; i < names.length; i++){
 			if(names[i].equals(name))
@@ -14,13 +19,18 @@ public class SimpleExtLookup implements ExtLookup {
 
 	public void add(String name, Object object) {
 		for (int i = 0; i < names.length; i++){
-			if(names[i].equals(name)){
+			if(name.equals(names[i])){
 				values[i] = object;
 				return;
 			}
 		}
-		names[names.length + 1] = name;
-		values[names.length + 1] = object;
+
+		for (int i = 0; i < names.length; i++) {
+			if (names[i] == null) {
+				names[i] = name;
+				values[i] = object;
+			}
+		}
 	}
 
 	public void remove(String name) {
@@ -29,5 +39,6 @@ public class SimpleExtLookup implements ExtLookup {
 				values[i] = null;
 		}
 	}
+
 
 }

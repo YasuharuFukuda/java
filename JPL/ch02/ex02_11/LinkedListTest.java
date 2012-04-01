@@ -7,8 +7,12 @@ import org.junit.Test;
 public class LinkedListTest {
 
 	@Test
-	public void test() {
-		fail("まだ実装されていません");
+	public void toStringTest() {
+		LinkedList first = new LinkedList("first");
+
+		String expected = "field: " + "first";
+
+		assertEquals(first.toString(), expected);
 	}
 
 }

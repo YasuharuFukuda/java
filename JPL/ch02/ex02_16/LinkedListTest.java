@@ -7,8 +7,14 @@ import org.junit.Test;
 public class LinkedListTest {
 
 	@Test
-	public void test() {
-		fail("まだ実装されていません");
+	public void sizeTest() {
+		LinkedList first = new LinkedList("first");
+		LinkedList second = new LinkedList("second");
+		first.setNextElement(second);
+
+		assertEquals(first.size(), 2);
+		assertEquals(second.size(), 1);
+
 	}
 
 }

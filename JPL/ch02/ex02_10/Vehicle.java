@@ -23,11 +23,11 @@ public class Vehicle {
 	public String toString() {
 		String desc = "";
 		if (owner != null)
-			desc += "owner: " + owner;
-		desc += "speed: " + speed;
-		desc += "angle: " + angle;
+			desc += "owner: " + owner + "\n";
+		desc += "speed: " + speed + "\n";
+		desc += "angle: " + angle + "\n";
 
-		return "id: " + id + desc;
+		return "id: " + id + "\n" + desc;
 	}
 
 	public static void main(String[] args) {

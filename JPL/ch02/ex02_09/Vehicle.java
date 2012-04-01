@@ -4,7 +4,7 @@ public class Vehicle {
 	public int speed;
 	public int angle;
 	public String owner;
-	public static int nextID;
+	public static int nextID = 0;
 	public int id;
 
 	public Vehicle(){
@@ -17,7 +17,7 @@ public class Vehicle {
 	}
 
 	public static int getMaxId() {
-		return nextID;
+		return nextID -1;
 	}
 
 	public static void main(String[] args) {

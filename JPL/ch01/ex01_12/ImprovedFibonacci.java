@@ -7,7 +7,7 @@ public class ImprovedFibonacci {
 		int hi = 1;
 		String mark;
 
-		System.out.println("9: " + lo);
+		System.out.println("9 :" + lo);
 
 		for(int i = 8; i >= MIN_INDEX; i--){
 			String result = "";
