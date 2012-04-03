@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="JPL/ch01"/>
 	<classpathentry kind="src" path="JPL/ch02"/>
+	<classpathentry kind="src" path="GUI"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="JPL/bin"/>
