@@ -1,0 +1,1 @@
+Attributedインターフェース内でAttrクラスを使っているため、AttrクラスがAttributedインターフェースのネストクラスであるべき
