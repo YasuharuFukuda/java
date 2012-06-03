@@ -7,6 +7,9 @@
 	<classpathentry kind="src" path="JPL/ch04"/>
 	<classpathentry kind="src" path="JPL/ch05"/>
 	<classpathentry kind="src" path="JPL/ch06"/>
+	<classpathentry kind="src" path="ch07"/>
+	<classpathentry kind="src" path="JPL/ch08"/>
+	<classpathentry kind="src" path="JPL/ch10"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="JPL/bin"/>
