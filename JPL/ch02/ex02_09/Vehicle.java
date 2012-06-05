@@ -1,4 +1,4 @@
-package ex02_09;
+package ch02.ex02_09;
 
 public class Vehicle {
 	public int speed;

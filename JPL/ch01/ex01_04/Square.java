@@ -1,4 +1,4 @@
-package ex01_04;
+package ch01.ex01_04;
 
 public class Square {
 	public static void main(String[] args) {

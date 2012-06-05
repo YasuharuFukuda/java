@@ -1,4 +1,4 @@
-package ex01_14;
+package ch01.ex01_14;
 
 public class Terminal {
 

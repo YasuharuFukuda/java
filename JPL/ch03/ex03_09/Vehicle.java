@@ -1,4 +1,4 @@
-package ex03_09;
+package ch03.ex03_09;
 
 //cloneをサポートする
 // 値のコピーでよいのでデフォルトのcloneでよい

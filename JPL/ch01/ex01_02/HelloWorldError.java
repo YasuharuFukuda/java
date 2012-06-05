@@ -1,4 +1,4 @@
-package ex01_02;
+package ch01.ex01_02;
 
 public class HelloWorldError {
 

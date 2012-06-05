@@ -1,4 +1,4 @@
-package ex03_10;
+package ch03.ex03_10;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package ex05_02;
+package ch05.ex05_02;
 
 public class BankAccount {
 	private long number;

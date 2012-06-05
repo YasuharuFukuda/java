@@ -1,4 +1,4 @@
-package ex06_01;
+package ch06.ex06_01;
 
 public enum Week {
 	SUNDAY,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY

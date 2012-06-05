@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="JPL/ch01"/>
-	<classpathentry kind="src" path="JPL/ch02"/>
 	<classpathentry kind="src" path="GUI"/>
-	<classpathentry kind="src" path="JPL/ch03"/>
-	<classpathentry kind="src" path="JPL/ch04"/>
-	<classpathentry kind="src" path="JPL/ch05"/>
-	<classpathentry kind="src" path="JPL/ch06"/>
-	<classpathentry kind="src" path="ch07"/>
-	<classpathentry kind="src" path="JPL/ch08"/>
-	<classpathentry kind="src" path="JPL/ch10"/>
+	<classpathentry kind="src" path="JPL"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="output" path="JPL/bin"/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,4 +1,4 @@
-package ex02_18;
+package ch02.ex02_18;
 
 public class Vehicle {
 	private double speed;

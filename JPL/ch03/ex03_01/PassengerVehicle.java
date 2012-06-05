@@ -1,6 +1,6 @@
-package ex03_01;
+package ch03.ex03_01;
 
-import ex02_18.Vehicle;
+import ch02.ex02_18.Vehicle;
 
 public class PassengerVehicle extends Vehicle {
 	private int seats;

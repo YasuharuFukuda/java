@@ -1,4 +1,4 @@
-package ex04_03;
+package ch04.ex04_03;
 
 
 public class LinkedListImpl implements Cloneable,LinkedList<LinkedListImpl> {

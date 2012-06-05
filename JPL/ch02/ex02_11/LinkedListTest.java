@@ -1,4 +1,4 @@
-package ex02_11;
+package ch02.ex02_11;
 
 import static org.junit.Assert.*;
 

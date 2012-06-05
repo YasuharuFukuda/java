@@ -1,4 +1,4 @@
-package ex03_09;
+package ch03.ex03_09;
 
 import java.util.ArrayList;
 import java.util.Iterator;

@@ -1,4 +1,4 @@
-package ex02_16;
+package ch02.ex02_16;
 
 public class LinkedList {
 	private Object field;

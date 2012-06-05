@@ -1,6 +1,6 @@
-package ex02_06;
+package ch02.ex02_06;
 
-import ex02_05.Vehicle;
+import ch02.ex02_05.Vehicle;
 
 public class LinkedList {
 	private Object field;

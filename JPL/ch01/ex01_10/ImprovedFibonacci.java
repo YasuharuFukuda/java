@@ -1,4 +1,4 @@
-package ex01_10;
+package ch01.ex01_10;
 
 public class ImprovedFibonacci {
 	static final int MAX_INDEX = 9;

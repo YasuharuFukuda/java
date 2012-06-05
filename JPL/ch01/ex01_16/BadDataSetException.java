@@ -1,4 +1,4 @@
-package ex01_16;
+package ch01.ex01_16;
 
 import java.io.IOException;
 

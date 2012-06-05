@@ -1,4 +1,4 @@
-package ex03_02;
+package ch03.ex03_02;
 
 public class Y extends X{
 	protected int yMask = 0xff00;

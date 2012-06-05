@@ -1,4 +1,4 @@
-package ex04_03;
+package ch04.ex04_03;
 
 public interface LinkedList<E> {
 	String toString();

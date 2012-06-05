@@ -1,4 +1,4 @@
-package ex04_01;
+package ch04.ex04_01;
 
 public class GasTank implements EnergySource{
 	private int gas = 0;

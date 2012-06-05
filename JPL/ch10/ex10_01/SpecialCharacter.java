@@ -1,33 +1,48 @@
-package ex10_01;
+package ch10.ex10_01;
 
 public class SpecialCharacter {
 	public String replace(String str) {
-		String nstr = "";
+		String replaceStr = "";
+        for (int i = 0; i < str.length(); i++) {
+        	replaceStr += replaceChar(str.charAt(i));
+        }
+        return replaceStr;
+	}
 
-		if(str.contains("n")   ||
-			str.contains("t")  ||
-			str.contains("b")  ||
-			str.contains("r")  ||
-			str.contains("f")  ||
-			str.contains("\\") ||
-			str.contains("\"") ||
-			str.contains("\'") ) {
-				nstr = str.replace("n", "\\n");
-				nstr = nstr.replace("t", "\\t");
-				nstr = nstr.replace("b", "\\b");
-				nstr = nstr.replace("r", "\\r");
-				nstr = nstr.replace("f", "\\f");
-				nstr = nstr.replace("\\", "\\\\");
-				nstr = nstr.replace("\'", "\\'");
-				nstr = nstr.replace("\"", "\\\"");
-			return nstr;
-		}else
-			return str;
+	public String replaceChar(char ch) {
+		String replaceCh = "";
+        if (ch == '\n') {
+            return "\\n";
+        }
+        else if (ch == '\t') {
+            return "\\t";
+        }
+        else if (ch == '\b') {
+            return "\\b";
+        }
+        else if (ch == '\r') {
+            return "\\r";
+        }
+        else if (ch == '\f') {
+            return "\\f";
+        }
+        else if (ch == '\\') {
+            return "\\\\";
+        }
+        else if (ch == '\'') {
+            return "\\'";
+        }
+        else if (ch == '\"') {
+            return "\\\"";
+        }
+        else {
+            return String.valueOf((ch));
+        }
 	}
 
 	public static void main(String[] args) {
 		SpecialCharacter sc = new SpecialCharacter();
 
-		System.out.println(sc.replace("ntbrf\\'"));
+		System.out.println(sc.replace("\n\tbrf\\'"));
 	}
 }

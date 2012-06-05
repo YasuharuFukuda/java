@@ -1,4 +1,4 @@
-package ex01_07;
+package ch01.ex01_07;
 
 public class ImprovedFibonacci {
 	static final int MIN_INDEX = 1;

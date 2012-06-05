@@ -1,4 +1,4 @@
-package ex06_05;
+package ch06.ex06_05;
 
 public enum Color {
 	GREEN("GREEN") {
