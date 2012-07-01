@@ -1,0 +1,20 @@
+- PassengerVehicleオブジェクト定員が負の値
+	-- OutOfBoundsExceptionを投げる
+
+- オブジェクトの初期値設定用ファイルの文法エラー
+	--  独自の例外を投げる（ParseException）
+
+- プログラマが指定した単語を文字列の配列から検索するメソッド
+	-- null返す
+
+- openメソッドへ指定されたファイルがない
+	-- FileNotFoundExceptionを投げる
+
+- openメソッドへ指定されたファイルは存在するが、セキュリティにより使用できない
+	-- 独自の例外を投げる（SecurityException）
+
+- リモートのサーバプロセスに接続できない
+	-- 独自の例外を投げる(ConnextionException)
+
+- サーバとのやり取り中にコネクションが切れる
+	-- 独自の例外を投げる(ConnextionException)
