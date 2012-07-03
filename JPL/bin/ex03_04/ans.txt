@@ -1,4 +1,0 @@
-設定系のメソッドは拡張先で変更する可能性があると思ったため、取得系のメソッドならfinalにできると考えました
-
-Vehicle: getSpeed, getAngle,getId, getOwner
-PassengerVehicle: getSeats, getPassenger

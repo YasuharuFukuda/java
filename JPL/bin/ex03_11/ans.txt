@@ -1,1 +1,0 @@
-・doSortでsortした後に、再度sort()を呼ぶとソート済みのvaluesに対し再度sort()を呼ぶためmetricsが0になる
