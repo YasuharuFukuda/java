@@ -4,10 +4,17 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.PopupMenu;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.Calendar;
 
 
-class MyCanvas extends Canvas implements Runnable {
+class MyCanvas extends Canvas implements Runnable{
 
 	private Color sColor = Color.WHITE;
 	private String fontName = Font.SERIF;
@@ -101,4 +108,5 @@ class MyCanvas extends Canvas implements Runnable {
 			this.sColor = Color.white;
 		}
 	}
+
 }
