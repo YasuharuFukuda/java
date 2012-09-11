@@ -16,9 +16,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 
 
 public class Interpret extends Frame  implements ActionListener{
@@ -34,7 +35,7 @@ public class Interpret extends Frame  implements ActionListener{
 	private Color backColor = Color.WHITE;
 	//windowのサイズ
 	private int width = 1000;
-	private int hight = 800;
+	private int hight = 650;
 
 	//フォント設定
 	private String fontName = Font.SERIF;
@@ -53,8 +54,6 @@ public class Interpret extends Frame  implements ActionListener{
 	private Button bconst = new Button("constructors");
 	private Button bobjs = new Button("objects");
 	private Button bcobj = new Button("current object");
-	private Button bcobjf = new Button("object field");
-	private Button bcobjm = new Button("object method");
 
 ////////////////// paintConstructors ///////////////////////
 	private Label lcons = new Label("constructor");
@@ -76,7 +75,7 @@ public class Interpret extends Frame  implements ActionListener{
 	private Label[] lobjName;
 	private Button[] bf = null;
 	private Button[] bm = null;
-	private Map<String, Object> objects = new HashMap<String, Object>();
+	private Map<String, Object> objects = new LinkedHashMap<String, Object>();
 	private String selectedObjectName = null;
 	private Object[] objectList = null;
 
@@ -96,7 +95,7 @@ public class Interpret extends Frame  implements ActionListener{
 	private Label lerrorName;
 	private Label lerrorMsg;
 
-	Interpret() {
+	public Interpret() {
 		super("Interpret");
 		setFont(new Font(fontName, fontStyle, fontSize));
 		setBackground(backColor);
@@ -111,32 +110,23 @@ public class Interpret extends Frame  implements ActionListener{
 	public void paintTop(){
 		removeAll();
 
-		add(labelClass);
 		labelClass.setFont(new Font(Font.SERIF, Font.PLAIN, 25));
-		labelClass.setBounds(20,40,100,40);
 
+		add(labelClass);
 		add(tclassname);
-		tclassname.setBounds(20,90,200,30);
-
 		add(bconst);
-		bconst.setBounds(20, 130, 100, 30);
-		bconst.addActionListener(this);
-
 		add(bobjs);
-		bobjs.setBounds(20, 180, 100, 30);
-		bobjs.addActionListener(this);
-
 		add(bcobj);
+
+		labelClass.setBounds(20,40,100,40);
+		tclassname.setBounds(20,90,200,30);
+		bconst.setBounds(20, 130, 100, 30);
+		bobjs.setBounds(20, 180, 100, 30);
 		bcobj.setBounds(20, 220, 100, 30);
+
+		bconst.addActionListener(this);
+		bobjs.addActionListener(this);
 		bcobj.addActionListener(this);
-
-		add(bcobjf);
-		bcobjf.setBounds(20, 260, 100, 30);
-		bcobjf.addActionListener(this);
-
-		add(bcobjm);
-		bcobjm.setBounds(20, 300, 100, 30);
-		bcobjm.addActionListener(this);
 
 	}
 
@@ -145,18 +135,32 @@ public class Interpret extends Frame  implements ActionListener{
 
 		constructors = Classoperator.getConstructor(c);
 
-		add(lcons);
-		lcons.setBounds(20, 40, 200, 40);
-		lcons.setFont(new Font(Font.SERIF, Font.PLAIN, 25));
-
 		Button bb = new Button("top");
-		add(bb);
-		bb.setBounds(210, 40, 100, 30);
-		bb.addActionListener(this);
-
 		tobjNames = new TextArea[constructors.size()];
 		tobjParams = new TextArea[constructors.size()];
 		tobjSize = new TextArea[constructors.size()];
+		Label name = new Label("Object Name");
+		Label arg = new Label("Arguments");
+		Label size = new Label("Size");
+
+		lcons.setFont(new Font(Font.SERIF, Font.PLAIN, 25));
+		name.setFont(new Font(Font.SERIF, Font.PLAIN, 20));
+		arg.setFont(new Font(Font.SERIF, Font.PLAIN, 20));
+		size.setFont(new Font(Font.SERIF, Font.PLAIN, 20));
+
+		add(lcons);
+		add(bb);
+		add(name);
+		add(arg);
+		add(size);
+
+		lcons.setBounds(20, 40, 200, 40);
+		bb.setBounds(210, 40, 100, 30);
+		name.setBounds(90, 90, 150, 30);
+		arg.setBounds(310,  90, 150, 30 );
+		size.setBounds(530,  90, 150, 30 );
+
+		bb.addActionListener(this);
 
 		int count = 1;
 		int max;
@@ -166,38 +170,29 @@ public class Interpret extends Frame  implements ActionListener{
 			max = constructors.size();
 		}
 
-		Label name = new Label("Object Name");
-		add(name);
-		name.setBounds(100, 90, 100, 30);
-
-		Label arg = new Label("Arguments");
-		add(arg);
-		arg.setBounds(310,  90, 100, 30 );
-
 		for(int j = (page - 1) * items; j < max; j++){
 			Constructor cos = constructors.get(j);
 
 			Label label = new Label(cos.toString());
-			add(label);
-			label.setBounds(20, 40 + 90 * count, 500, 30);
-
 			Button b = new Button("make");
-			b.setActionCommand("make" + (j));
-			add(b);
-			b.setBounds(20, 90 + 90 * count, 50, 30);
-			b.addActionListener(this);
-
 			tobjNames[j] = new TextArea();
-			add(tobjNames[j]);
-			tobjNames[j].setBounds(b.getX() + b.getWidth() + 20,  90 + 90 * count, 200, 30 );
-
 			tobjParams[j] = new TextArea();
-			add(tobjParams[j]);
-			tobjParams[j].setBounds(tobjNames[j].getX() + tobjNames[j].getWidth() + 20,  90 + 90 * count, 200, 30 );
-
 			tobjSize[j] = new TextArea();
+
+			add(label);
+			add(b);
+			add(tobjNames[j]);
+			add(tobjParams[j]);
 			add(tobjSize[j]);
+
+			label.setBounds(20, 40 + 90 * count, 500, 30);
+			b.setBounds(20, 90 + 90 * count, 50, 30);
+			tobjNames[j].setBounds(b.getX() + b.getWidth() + 20,  90 + 90 * count, 200, 30 );
+			tobjParams[j].setBounds(tobjNames[j].getX() + tobjNames[j].getWidth() + 20,  90 + 90 * count, 200, 30 );
 			tobjSize[j].setBounds(tobjParams[j].getX() + tobjParams[j].getWidth() + 20,  90 + 90 * count, 200, 30 );
+
+			b.setActionCommand("make" + (j));
+			b.addActionListener(this);
 
 			count++;
 		}
@@ -218,7 +213,7 @@ public class Interpret extends Frame  implements ActionListener{
 			bp.addActionListener(this);
 		}
 
-		Label p = new Label(page + "/" + (constructors.size() / items + 1));
+		Label p = new Label(page + "/" + ((constructors.size() - 1) / items + 1));
 		add(p);
 		p.setBounds(180, 590, 50, 30);
 
@@ -226,17 +221,21 @@ public class Interpret extends Frame  implements ActionListener{
 
 	public void paintObjects() {
 		removeAll();
-		add(lobjs);
-		lobjs.setBounds(20,40, 100, 20);
 
 		Button btop = new Button("top");
-		add(btop);
-		btop.setBounds(210, 40, 200, 30);
-		btop.addActionListener(this);
-
 		objectsName = new Label[objects.size()];
 		objectsSize = new Label[objects.size()];
 		objectsSelect =  new Button[objects.size()];
+
+		lobjs.setFont(new Font(Font.SERIF, Font.PLAIN, 25));
+
+		add(lobjs);
+		add(btop);
+
+		lobjs.setBounds(20,40, 100, 20);
+		btop.setBounds(210, 40, 200, 30);
+
+		btop.addActionListener(this);
 
 		int count = 1;
 
@@ -246,36 +245,38 @@ public class Interpret extends Frame  implements ActionListener{
 		} else {
 			max = objects.size();
 		}
+		int j = 0;
 
 		for(Map.Entry<String, Object> e : objects.entrySet()) {
 
-			// objects_name
-			objectsName[count - 1] = new Label(e.getKey());
-			add(objectsName[count - 1]);
-			objectsName[count - 1].setBounds(20,40 + 90 * count,200,30);
+			if(j >=  (page -1) * items && j < max){
+				Object[] value = (Object[])e.getValue();
+				int size = value.length;
 
+				objectsName[count - 1] = new Label(e.getKey());
+				objectsSize[count - 1] = new Label(String.valueOf(size));
+				objectsSelect[count - 1] = new Button("select");
 
-			// objects_name
-			Object[] value = (Object[])e.getValue();
-			int size = value.length;
-			objectsSize[count - 1] = new Label(String.valueOf(size));
-			add(objectsSize[count - 1]);
-			objectsSize[count - 1].setBounds(objectsName[count - 1].getX() + objectsName[count - 1].getWidth() + 20,40 + 90 * count,30,30);
+				add(objectsName[count - 1]);
+				add(objectsSize[count - 1]);
+				add(objectsSelect[count - 1]);
 
-			// objects_selected
-			objectsSelect[count - 1] = new Button("select");
-			objectsSelect[count - 1].setActionCommand("select" + e.getKey());
-			add(objectsSelect[count - 1]);
-			objectsSelect[count - 1].setBounds(objectsSize[count - 1].getX() + objectsSize[count - 1].getWidth() + 20 , 40 + 90 * count, 100, 30);
-			objectsSelect[count - 1].addActionListener(this);
+				objectsName[count - 1].setBounds(20,40 + 90 * count,200,30);
+				objectsSize[count - 1].setBounds(objectsName[count - 1].getX() + objectsName[count - 1].getWidth() + 20,40 + 90 * count,30,30);
+				objectsSelect[count - 1].setBounds(objectsSize[count - 1].getX() + objectsSize[count - 1].getWidth() + 20 , 40 + 90 * count, 100, 30);
 
-			count++;
+				objectsSelect[count - 1].setActionCommand("select" + e.getKey());
 
+				objectsSelect[count - 1].addActionListener(this);
+
+				count++;
+			}
+			j++;
 		}
 
 		if(objects.size() > page * items){
 			Button bn = new Button("next");
-			bn.setActionCommand("nextObject");
+			bn.setActionCommand("nextObjects");
 			add(bn);
 			bn.setBounds(100, 590, 50, 30);
 			bn.addActionListener(this);
@@ -283,13 +284,13 @@ public class Interpret extends Frame  implements ActionListener{
 
 		if(page > 1){
 			Button bp = new Button("prev");
-			bp.setActionCommand("nextObject");
+			bp.setActionCommand("nextObjects");
 			add(bp);
 			bp.setBounds(20, 590, 50, 30);
 			bp.addActionListener(this);
 		}
 
-		Label p = new Label(page + "/" + (objects.size() / items + 1));
+		Label p = new Label(page + "/" + ((objects.size() - 1) / items + 1));
 		add(p);
 		p.setBounds(180, 590, 50, 30);
 
@@ -301,18 +302,20 @@ public class Interpret extends Frame  implements ActionListener{
 		objectList = (Object[])objects.get(selectedObjectName);
 
 		lobj = new Label(selectedObjectName);
-		add(lobj);
-		lobj.setBounds(20, 40, 200, 40);
-		lobj.setFont(new Font(Font.SERIF, Font.PLAIN, 25));
-
 		Button btop = new Button("top");
-		add(btop);
-		btop.setBounds(210, 40, 200, 30);
-		btop.addActionListener(this);
-
 		lobjName = new Label[objectList.length];
 		bf = new Button[objectList.length];
 		bm =  new Button[objectList.length];
+
+		add(lobj);
+		add(btop);
+
+		lobj.setBounds(20, 40, 200, 40);
+		btop.setBounds(210, 40, 200, 30);
+
+		lobj.setFont(new Font(Font.SERIF, Font.PLAIN, 25));
+
+		btop.addActionListener(this);
 
 		int count = 1;
 
@@ -362,7 +365,7 @@ public class Interpret extends Frame  implements ActionListener{
 			bp.addActionListener(this);
 		}
 
-		Label p = new Label(page + "/" + (objectList.length / items + 1));
+		Label p = new Label(page + "/" + ((objectList.length - 1) / items + 1));
 		add(p);
 		p.setBounds(180, 590, 50, 30);
 
@@ -460,7 +463,7 @@ public class Interpret extends Frame  implements ActionListener{
 			bp.addActionListener(this);
 		}
 
-		Label p = new Label(page + "/" + (fields.size() / items + 1));
+		Label p = new Label(page + "/" + ((fields.size() - 1) / items + 1));
 		add(p);
 		p.setBounds(180, 590, 50, 30);
 	}
@@ -535,7 +538,7 @@ public class Interpret extends Frame  implements ActionListener{
 			bp.addActionListener(this);
 		}
 
-		Label p = new Label(page + "/" + (methods.size() / items + 1));
+		Label p = new Label(page + "/" + ((methods.size() - 1) / items + 1));
 		add(p);
 		p.setBounds(180, 590, 50, 30);
 	}
@@ -545,7 +548,7 @@ public class Interpret extends Frame  implements ActionListener{
 		return strs[strs.length - 1];
 	}
 
-	public void paintError(Exception e){
+	public void paintError(Throwable e){
 		removeAll();
 
 		lerrorName = new Label(e.getClass().toString());
@@ -553,6 +556,7 @@ public class Interpret extends Frame  implements ActionListener{
 		//lerror = new Label(e.getMessage());
 
 		add(lerror);
+		lerror.setFont(new Font(Font.SERIF, Font.PLAIN, 25));
 		add(lerrorName);
 		add(lerrorMsg);
 
@@ -583,7 +587,16 @@ public class Interpret extends Frame  implements ActionListener{
 
 		String oname = tobjNames[num].getText();
 		String[] oparams = tobjParams[num].getText().split(",");
-		int osize = Integer.parseInt(tobjSize[num].getText());
+		int osize = 0;
+
+		try {
+			osize = Integer.parseInt(tobjSize[num].getText());
+			if(osize < 1)
+				return;
+		} catch(Exception ee)  {
+			paintError(ee);
+			return;
+		}
 
 		Class[] cs = c.getParameterTypes();
 		Object[] params = new Object[cs.length];
@@ -640,7 +653,82 @@ public class Interpret extends Frame  implements ActionListener{
 		} catch (IllegalAccessException e1) {
 			paintError(e1);
 		} catch (InvocationTargetException e1) {
+			paintError(e1.getTargetException());
+		}
+	}
+
+	public void actionModify(ActionEvent e) {
+		int num = Integer.parseInt(e.getActionCommand().split("modify")[1]);
+		if(tasForFields[num].getText() != null){
+			try {
+				fields.get(num).setAccessible(true);
+				Classoperator.setField(selectedObject, fields.get(num), tasForFields[num].getText());
+				paintFields();
+			} catch (IllegalArgumentException e1) {
+				paintError(e1);
+			} catch (IllegalAccessException e1) {
+				paintError(e1);
+			}
+		}
+
+	}
+
+	public void actionRun(ActionEvent e) {
+		int num = Integer.parseInt(e.getActionCommand().split("run")[1]);
+		Method m = methods.get(num);
+		m.setAccessible(true);
+
+		String text = tasForMethods[num].getText();
+		String[] textParams = text.split(",");
+
+		Class[] cs = m.getParameterTypes();
+		Object[] params = new Object[cs.length];
+
+		try {
+			for(int i = 0; i < cs.length; i++) {
+				String tos = cs[i].toString();
+				if(tos.matches(".*String.*")) {
+					params[i] = textParams[i];
+				} else if(tos.matches(".*boolean.*")) {
+					params[i] = new Boolean(textParams[i]);
+				} else if(tos.matches(".*int.*")) {
+					params[i] = new Integer(textParams[i]);
+				} else if(tos.matches(".*byte.*")) {
+					params[i] = new Byte(textParams[i]);
+				} else if(tos.matches(".*char.*")) {
+					params[i] = new Character(textParams[i].charAt(0));
+				} else if(tos.matches(".*short.*")) {
+					params[i] = new Short(textParams[i]);
+				} else if(tos.matches(".*long.*")) {
+					params[i] = new Long(textParams[i]);
+				} else if(tos.matches(".*float.*")) {
+					params[i] = new Float(textParams[i]);
+				} else if(tos.matches(".*double.*")) {
+					params[i] = new Double(textParams[i]);
+				} else if(textParams[i].matches(".*\\:.*")){
+					String clasType = textParams[i].split("\\:")[0];
+					String f = textParams[i].split("\\:")[1];
+					params[i] = Class.forName(clasType).getDeclaredField(f).get(null);
+				} else if (textParams[i].matches(".*@.*")) {
+					String objName =  textParams[i].split("@")[0];
+					int n = Integer.parseInt(textParams[i].split("@")[1]);
+					Object[] objs = (Object[])objects.get(objName);
+					params[i] = objs[n];
+				}
+			}
+		} catch(Exception ee) {
+			paintError(ee);
+		}
+
+		try {
+			results.set(num, Classoperator.runMethod(selectedObject, m, params));
+			paintMethods();
+		} catch (IllegalArgumentException e1) {
 			paintError(e1);
+		} catch (IllegalAccessException e1) {
+			paintError(e1);
+		} catch (InvocationTargetException e1) {
+			paintError(e1.getTargetException());
 		}
 	}
 
@@ -649,12 +737,16 @@ public class Interpret extends Frame  implements ActionListener{
 			page = 1;
 			actionConstructors();
 		} else if(e.getActionCommand() == "objects") {
+			page = 1;
 			paintObjects();
 		} else if(e.getActionCommand() == "current object") {
+			page = 1;
 			paintObject();
 		} else if(e.getActionCommand() == "object field") {
+			page = 1;
 			paintFields();
 		} else if(e.getActionCommand() == "object method") {
+			page = 1;
 			paintMethods();
 		} else if (e.getActionCommand().indexOf("make") == 0) { //
 			page = 1;
@@ -663,6 +755,7 @@ public class Interpret extends Frame  implements ActionListener{
 			page = 1;
 			paintTop();
 		} else if (e.getActionCommand().indexOf("select") == 0) { //
+			page = 1;
 			selectedObjectName = e.getActionCommand().split("select")[1];
 			paintObject();
 		} else if (e.getActionCommand() == "objects") {
@@ -679,81 +772,23 @@ public class Interpret extends Frame  implements ActionListener{
 			selectedObject = objectList[num];
 			paintMethods();
 		} else if (e.getActionCommand().indexOf("modify") == 0) {
-			int num = Integer.parseInt(e.getActionCommand().split("modify")[1]);
-			if(tasForFields[num].getText() != null){
-				try {
-					fields.get(num).setAccessible(true);
-					Classoperator.setField(selectedObject, fields.get(num), tasForFields[num].getText());
-					paintFields();
-				} catch (IllegalArgumentException e1) {
-					paintError(e1);
-				} catch (IllegalAccessException e1) {
-					paintError(e1);
-				}
-			}
+			page = 1;
+			actionModify(e);
 		} else if(e.getActionCommand().indexOf("run") == 0) {
-			int num = Integer.parseInt(e.getActionCommand().split("run")[1]);
-			Method m = methods.get(num);
-			m.setAccessible(true);
-
-			String text = tasForMethods[num].getText();
-			String[] textParams = text.split(",");
-
-			Class[] cs = m.getParameterTypes();
-			Object[] params = new Object[cs.length];
-
-			try {
-				for(int i = 0; i < cs.length; i++) {
-					String tos = cs[i].toString();
-					if(tos.matches(".*String.*")) {
-						params[i] = textParams[i];
-					} else if(tos.matches(".*boolean.*")) {
-						params[i] = new Boolean(textParams[i]);
-					} else if(tos.matches(".*int.*")) {
-						params[i] = new Integer(textParams[i]);
-					} else if(tos.matches(".*byte.*")) {
-						params[i] = new Byte(textParams[i]);
-					} else if(tos.matches(".*char.*")) {
-						params[i] = new Character(textParams[i].charAt(0));
-					} else if(tos.matches(".*short.*")) {
-						params[i] = new Short(textParams[i]);
-					} else if(tos.matches(".*long.*")) {
-						params[i] = new Long(textParams[i]);
-					} else if(tos.matches(".*float.*")) {
-						params[i] = new Float(textParams[i]);
-					} else if(tos.matches(".*double.*")) {
-						params[i] = new Double(textParams[i]);
-					} else if(textParams[i].matches(".*\\:.*")){
-						String clasType = textParams[i].split("\\:")[0];
-						String f = textParams[i].split("\\:")[1];
-						params[i] = Class.forName(clasType).getDeclaredField(f).get(null);
-					} else if (textParams[i].matches(".*@.*")) {
-						String objName =  textParams[i].split("@")[0];
-						int n = Integer.parseInt(textParams[i].split("@")[1]);
-						Object[] objs = (Object[])objects.get(objName);
-						params[i] = objs[n];
-					}
-				}
-			} catch(Exception ee) {
-				paintError(ee);
-			}
-
-			try {
-				results.set(num, Classoperator.runMethod(selectedObject, m, params));
-				paintMethods();
-			} catch (IllegalArgumentException e1) {
-				paintError(e1);
-			} catch (IllegalAccessException e1) {
-				paintError(e1);
-			} catch (InvocationTargetException e1) {
-				paintError(e1);
-			}
+			page = 1;
+			actionRun(e);
 		} else if (e.getActionCommand() == "nextConstructor") {
 			page++;
 			paintConstructors(cls);
 		} else if (e.getActionCommand() == "prevConstructor") {
 			page--;
 			paintConstructors(cls);
+		} else if (e.getActionCommand() == "nextObjects") {
+			page++;
+			paintObjects();
+		} else if (e.getActionCommand() == "prevObjects") {
+			page--;
+			paintObjects();
 		}  else if (e.getActionCommand() == "nextObject") {
 			page++;
 			paintObject();
