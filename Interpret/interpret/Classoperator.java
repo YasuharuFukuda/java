@@ -100,9 +100,15 @@ public class Classoperator {
 		return m.invoke(o, args);
 	}
 
-	public static Constructor[] getConstructor(Object o){
-		Constructor[] c = o.getClass().getConstructors();
-		return c;
+	public static List<Constructor> getConstructor(Class cl){
+		List list = new ArrayList<Constructor>();
+
+		Constructor[] cs = cl.getConstructors();
+
+		for(Constructor c : cs) {
+			list.add(c);
+		}
+		return list;
 	}
 
 }

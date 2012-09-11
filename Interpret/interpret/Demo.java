@@ -2,7 +2,7 @@ package interpret;
 
 import java.awt.Color;
 
-public class X {
+public class Demo {
 	public final String a = "a";
 	private String b = "b";
 	private String c = "c";
@@ -11,11 +11,11 @@ public class X {
 	boolean boo2 = false;
 	private final String f = "final";
 
-	public X() {
+	public Demo() {
 	}
 
-	public X(String b){
-		this.b = b;
+	public Demo(String a){
+		a = a;
 	}
 
 	public String returnHoge() {
@@ -39,7 +39,7 @@ public class X {
 	}
 
 	public String toString() {
-		return "this is X object";
+		return "this is Demo object";
 	}
 
 	public String string(String sss) {
