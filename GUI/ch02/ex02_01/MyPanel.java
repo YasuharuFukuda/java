@@ -21,13 +21,6 @@ class MyPanel extends JPanel {
 
 	private int fontStyle = Font.PLAIN;
 	private String fontName = Font.SERIF;
-	private int xLayout = 30;
-	private int yLayout = 40;
-
-	private int timing = 1000;
-	private Image imgBuffer;
-	private Graphics gBuffer;
-
 	public MyPanel(){
 		setSize(100, 100);
 
