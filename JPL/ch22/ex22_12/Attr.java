@@ -1,4 +1,4 @@
-package ch03.ex03_07;
+package ch22.ex22_12;
 
 public class Attr {
 	private final String name;

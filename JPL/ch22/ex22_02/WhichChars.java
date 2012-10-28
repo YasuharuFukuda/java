@@ -6,8 +6,7 @@ import java.util.HashSet;
 import java.util.TreeSet;
 
 public class WhichChars {
-	private HashMap<String, BitSet> hm = new HashMap<String, BitSet>();
-
+	private HashSet<Character> used = new HashSet<Character>(); //なぜHaseSetなのでしょうか？
 	public WhichChars(String str) {
 		for(int i = 0; i < str.length(); i++)
 			used.add(str.charAt(i));
