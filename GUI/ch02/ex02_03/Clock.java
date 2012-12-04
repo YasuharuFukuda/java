@@ -41,7 +41,7 @@ public class Clock extends JWindow  implements ActionListener, MouseListener, Mo
 	}
 
 	private int width = 200;
-	private int hight = 120;
+	private int hight = 200;
 	private String fontName = Font.SERIF;
 	private int fontStyle = Font.PLAIN;
 	private int fontSize = 15;
@@ -85,7 +85,11 @@ public class Clock extends JWindow  implements ActionListener, MouseListener, Mo
 			tp.setBackColor(selected.split("背景色:")[1]);
 		} else if(selected == "exit") {
 			System.exit(0);
-		}else
+		} else if(selected == "アナログ") {
+			tp.setDigitalFlag(false);
+		} else if(selected == "デジタル") {
+			tp.setDigitalFlag(true);
+		} else
 			System.out.println(e.getActionCommand());
 	}
 
@@ -98,6 +102,11 @@ public class Clock extends JWindow  implements ActionListener, MouseListener, Mo
 
 
 	public void setPupup() {
+
+		// digital
+		setMenuItem("デジタル");
+		setMenuItem("アナログ");
+
 		// font
 		setMenuItem("Font:SERIF");
 		setMenuItem("Font:SANSERIF");
